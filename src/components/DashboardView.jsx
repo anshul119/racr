@@ -167,28 +167,24 @@ export default function DashboardView({ userMetrics, user }) {
                                         <Flex direction="column" gap="4">
                                             <Box>
                                                 <Text as="label" size="2" weight="medium" mb="1">Distance (km)</Text>
-                                                <TextField.Root>
-                                                    <TextField.Input
-                                                        placeholder="e.g. 21.1"
-                                                        type="number"
-                                                        step="0.1"
-                                                        value={manualDistance}
-                                                        onChange={(e) => setManualDistance(e.target.value)}
-                                                        required
-                                                    />
-                                                </TextField.Root>
+                                                <TextField.Root
+                                                    placeholder="e.g. 21.1"
+                                                    type="number"
+                                                    step="0.1"
+                                                    value={manualDistance}
+                                                    onChange={(e) => setManualDistance(e.target.value)}
+                                                    required
+                                                />
                                             </Box>
                                             <Box>
                                                 <Text as="label" size="2" weight="medium" mb="1">Elevation Gain (m)</Text>
-                                                <TextField.Root>
-                                                    <TextField.Input
-                                                        placeholder="e.g. 500"
-                                                        type="number"
-                                                        value={manualElevation}
-                                                        onChange={(e) => setManualElevation(e.target.value)}
-                                                        required
-                                                    />
-                                                </TextField.Root>
+                                                <TextField.Root
+                                                    placeholder="e.g. 500"
+                                                    type="number"
+                                                    value={manualElevation}
+                                                    onChange={(e) => setManualElevation(e.target.value)}
+                                                    required
+                                                />
                                             </Box>
                                             <Button type="submit" disabled={loading} size="3" mt="2" style={{ cursor: 'pointer' }}>
                                                 {loading ? "Calculating..." : "Predict Time"}
