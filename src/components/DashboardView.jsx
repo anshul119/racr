@@ -2,12 +2,14 @@
 
 import { useState, useRef } from "react";
 import { formatPace, formatDuration } from "@/lib/prediction";
-import { uploadGpxAction, predictManualAction } from "@/app/actions";
+import { uploadGpxAction, predictManualAction, syncData } from "@/app/actions";
 import { Box, Button, Card, Container, Flex, Grid, Heading, Text, Tabs, TextField } from "@radix-ui/themes";
+import { signOut } from "next-auth/react";
 
 export default function DashboardView({ userMetrics, user }) {
     const [prediction, setPrediction] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [syncing, setSyncing] = useState(false);
     const [error, setError] = useState(null);
 
     // Manual Input State
@@ -19,6 +21,12 @@ export default function DashboardView({ userMetrics, user }) {
     const resetState = () => {
         setPrediction(null);
         setError(null);
+    };
+
+    const handleSync = async () => {
+        setSyncing(true);
+        await syncData();
+        setSyncing(false);
     };
 
     const handleFileChange = async (e) => {
@@ -83,7 +91,18 @@ export default function DashboardView({ userMetrics, user }) {
                         <Text size="1" weight="medium" color="gray">BETA</Text>
                     </Box>
                 </Flex>
-                <Text size="2" color="gray">{user?.name}</Text>
+
+                <Flex align="center" gap="4">
+                    <Text size="2" color="gray" weight="medium">{user?.name}</Text>
+
+                    <Button variant="soft" color="gray" onClick={handleSync} disabled={syncing}>
+                        {syncing ? "Syncing..." : "Sync"}
+                    </Button>
+
+                    <Button variant="outline" color="gray" onClick={() => signOut({ callbackUrl: "/" })}>
+                        Sign Out
+                    </Button>
+                </Flex>
             </Flex>
 
             <Grid columns={{ initial: '1', md: '2' }} gap="6">

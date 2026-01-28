@@ -34,6 +34,7 @@ export async function uploadGpxAction(formData, userGap) {
     }
 }
 
+
 export async function predictManualAction(distance, elevation, userGap) {
     try {
         const courseData = {
@@ -58,4 +59,11 @@ export async function predictManualAction(distance, elevation, userGap) {
             error: error.message
         };
     }
+}
+
+import { revalidatePath } from "next/cache";
+
+export async function syncData() {
+    revalidatePath("/dashboard");
+    return { success: true };
 }
