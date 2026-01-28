@@ -5,6 +5,7 @@ import { formatPace, formatDuration } from "@/lib/prediction";
 import { uploadGpxAction, predictManualAction, syncData } from "@/app/actions";
 import { Box, Button, Card, Container, Flex, Grid, Heading, Text, Tabs, TextField } from "@radix-ui/themes";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 export default function DashboardView({ userMetrics, user }) {
     const [prediction, setPrediction] = useState(null);
@@ -238,6 +239,14 @@ export default function DashboardView({ userMetrics, user }) {
                     </Card>
                 </Box>
             </Grid>
+
+            <Box mt="8" mb="4" style={{ textAlign: 'center' }}>
+                <Link href="/methodology">
+                    <Text size="2" color="gray" style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+                        How does prediction work?
+                    </Text>
+                </Link>
+            </Box>
         </Container>
     );
 }

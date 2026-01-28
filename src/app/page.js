@@ -25,6 +25,14 @@ export default async function Home() {
           <Box mt="4">
             <LoginButton />
           </Box>
+
+          <Box mt="6">
+            <Link href="/methodology">
+              <Text size="2" color="gray" style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+                See how it works
+              </Text>
+            </Link>
+          </Box>
         </Flex>
       </Container>
     </Flex>
