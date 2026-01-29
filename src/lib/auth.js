@@ -32,5 +32,6 @@ export const authOptions = {
     },
     pages: {
         signIn: '/', // Redirect to home on signin error or requirement
-    }
+    },
+    secret: process.env.NEXTAUTH_SECRET,
 };
